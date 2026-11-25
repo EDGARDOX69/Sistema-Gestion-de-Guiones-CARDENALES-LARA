@@ -24,3 +24,17 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           pip install pytest
+
+          - name: Levantar aplicación Flask + SocketIO en segundo plano
+        env:
+          CAPTCHA_ENABLED: "0"
+          FLASK_ENV: testing
+        run: |
+          python -c "from app import create_app, socketio; app = create_app(); socketio.run(app, debug=False, host='127.0.0.1', port=5001, use_reloader=False, allow_unsafe_werkzeug=True)" > /tmp/flask_test.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -sf http://127.0.0.1:5001/auth/login > /dev/null; then
+              echo "Servidor listo en http://127.0.0.1:5001"
+              break
+            fi
+            sleep 1
+          done
