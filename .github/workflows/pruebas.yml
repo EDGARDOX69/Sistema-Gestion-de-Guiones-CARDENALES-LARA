@@ -51,12 +51,12 @@ jobs:
           pip install pytest pytest-playwright
           playwright install chromium --with-deps
 
-      - name: 4. Crear e importar bases de datos de prueba
+      - name: 4. Crear e importar bases de datos de prueba desde la raíz
         run: |
           mysql -h 127.0.0.1 -u root -proot -e "CREATE DATABASE IF NOT EXISTS estadio_db_test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
           mysql -h 127.0.0.1 -u root -proot -e "CREATE DATABASE IF NOT EXISTS seguridad_db_test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-          mysql -h 127.0.0.1 -u root -proot estadio_db_test <estadio_db_test.sql
-          mysql -h 127.0.0.1 -u root -proot seguridad_db_test <seguridad_db_test.sql
+          mysql -h 127.0.0.1 -u root -proot estadio_db_test < estadio_db_test.sql
+          mysql -h 127.0.0.1 -u root -proot seguridad_db_test < seguridad_db_test.sql
 
       - name: 5. Levantar servidor Flask + SocketIO en segundo plano
         run: |
