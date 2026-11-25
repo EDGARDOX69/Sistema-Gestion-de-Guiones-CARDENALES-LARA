@@ -1,0 +1,7 @@
+Comando: .venv-win\Scripts\python.exe -m pytest "Pruebas por modulo/balance" -q
+Fecha: 19/11/2026
+
+31 casos aprobados.
+0 failed, 0 skipped, 0 xfailed.
+
+Los 8 pagos de ejemplo están activos (estado=0) y suman 141.000,00.

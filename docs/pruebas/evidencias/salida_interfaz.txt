@@ -1,0 +1,7 @@
+Comando: E2E=1 .venv-win\Scripts\python.exe -m pytest test\interfaz "Pruebas por modulo" -m ui -q --junitxml=docs\pruebas\evidencias\junit_interfaz.xml
+Fecha: 19/11/2026
+
+33 passed, 213 deselected, 1 warning in 144.00s (0:02:21)
+0 failed, 0 skipped, 0 xfailed.
+
+Detalle por caso: junit_interfaz.xml

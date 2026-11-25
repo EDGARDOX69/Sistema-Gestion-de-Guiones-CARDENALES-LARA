@@ -1,0 +1,7 @@
+Comando: .venv-win\Scripts\python.exe -m pytest -m api -q
+Fecha: 19/11/2026
+
+63 casos recolectados; todos aprobados en la ejecución completa.
+0 failed, 0 skipped, 0 xfailed.
+
+Incluye permisos de reportes con reportes.view y POST sin permiso con 403.

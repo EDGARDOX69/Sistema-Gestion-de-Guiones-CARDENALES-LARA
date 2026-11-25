@@ -1,0 +1,5 @@
+Comando: .venv-win\Scripts\python.exe -m pytest -m smoke -q
+Fecha: 19/11/2026
+
+64 casos recolectados; todos aprobados en la ejecución completa.
+0 failed, 0 skipped, 0 xfailed.

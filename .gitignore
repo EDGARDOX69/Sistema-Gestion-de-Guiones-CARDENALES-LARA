@@ -1,0 +1,35 @@
+__pycache__/
+*.py[cod]
+*.pyo
+*.db
+*.egg-info/
+dist/
+build/
+.env
+venv/
+.venv-win/
+.DS_Store
+instance/*.db
+app/static/reportes/
+
+# Cachés de herramientas
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Resultados de Playwright (se regeneran al correr E2E)
+test/interfaz/reporte.html
+test/interfaz/test-results/
+
+# Exposición: intermedios y MP4 pesado (entregar aparte o con Git LFS)
+video/audio/
+video/slides/
+video/segmentos/
+video/_sin_subs.mp4
+video/lista.txt
+video/*.mp4
+docs/exposicion/evidencias/
+docs/pruebas/entrega_e2e/
+video-remotion/node_modules/
+video-remotion/out/

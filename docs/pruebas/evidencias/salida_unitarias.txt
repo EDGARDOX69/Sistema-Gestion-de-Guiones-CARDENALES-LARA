@@ -1,0 +1,8 @@
+﻿Comando: .venv-win\Scripts\python.exe -m pytest -m unit -q
+Fecha: 19/11/2026
+
+565 passed, 378 deselected in 4.19s
+0 failed, 0 skipped, 0 xfailed.
+
+La suite unitaria se ejecuta sin MySQL.
+

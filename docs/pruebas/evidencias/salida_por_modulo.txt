@@ -1,0 +1,7 @@
+Comando: .venv-win\Scripts\python.exe -m pytest "Pruebas por modulo" -q --junitxml=docs\pruebas\evidencias\junit_por_modulo.xml
+Fecha: 19/11/2026
+
+213 passed, 3 warnings in 93.62s (0:01:33)
+0 failed, 0 skipped, 0 xfailed.
+
+Detalle por caso: junit_por_modulo.xml

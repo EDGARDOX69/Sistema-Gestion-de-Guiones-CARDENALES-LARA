@@ -1,0 +1,8 @@
+﻿Comando: .venv-win\Scripts\python.exe -m pytest -q --junitxml=docs\pruebas\evidencias\junit_suite.xml
+Fecha: 19/11/2026
+
+943 passed, 4 warnings in 221.52s (0:03:20)
+0 failed, 0 skipped, 0 xfailed.
+
+Detalle por caso: junit_suite.xml
+

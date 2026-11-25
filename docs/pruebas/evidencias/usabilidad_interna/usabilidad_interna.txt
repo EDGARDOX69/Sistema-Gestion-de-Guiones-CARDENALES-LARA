@@ -1,0 +1,23 @@
+PRUEBA DE USABILIDAD INTERNA
+Fecha: 19/11/2026
+Usuario: Operador interno de pruebas con rol Superadmin
+Entorno: Windows 11, Chromium, 127.0.0.1:5002, bases *_test
+
+- Login con CAPTCHA: OK en 8.28 s. Autenticación completada y redirección al dashboard.
+- Dashboard: OK en 0.78 s. Página visible y sin error interno.
+- Crear guion: OK en 2.12 s. Formulario validado y confirmación con SweetAlert completada.
+- Previsualizar guion: OK en 0.77 s. Vista previa visible con el nombre del guion.
+- Balance: OK en 1.1 s. Página visible y sin error interno.
+- Inventario: OK en 0.9 s. Página visible y sin error interno.
+- Tareas: OK en 1.09 s. Página visible y sin error interno.
+- Reportes: OK en 0.86 s. Página visible y sin error interno.
+- Notificaciones: OK en 0.82 s. Campana visible y menú de notificaciones desplegable.
+- Dashboard móvil: OK en 0.0 s. Viewport 390x844; desbordamiento horizontal: no.
+- Balance móvil: OK en 0.0 s. Viewport 390x844; desbordamiento horizontal: no.
+
+Total: 11/11 tareas OK
+
+Evidencia adicional:
+- usabilidad_interna.json
+- capturas de cada tarea
+- video de la sesión: usabilidad_interna.webm

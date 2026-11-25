@@ -1,0 +1,33 @@
+......xxx............................................................... [  9%]
+........................................................................ [ 19%]
+........................................................................ [ 29%]
+........................................................................ [ 39%]
+........................................................................ [ 49%]
+........................................................................ [ 59%]
+........................................................................ [ 69%]
+........................................................................ [ 79%]
+........................................................................ [ 89%]
+........................................................................ [ 99%]
+......                                                                   [100%]
+=============================== warnings summary ===============================
+test/aceptacion/test_guion_flujo_completo.py::test_flujo_completo_del_guion
+  /Users/apple/Documents/Uptaeb/Proyecto/Itinerario/venv/lib/python3.15/site-packages/engineio/async_drivers/eventlet.py:1: EventletDeprecationWarning: 
+  Eventlet is deprecated. It is currently being maintained in bugfix mode, and
+  we strongly recommend against using it for new projects.
+  
+  If you are already using Eventlet, we recommend migrating to a different
+  framework.  For more detail see
+  https://eventlet.readthedocs.io/en/latest/asyncio/migration.html
+  
+    from eventlet.green.threading import Event
+
+test/integracion/test_auth.py::test_sesion_unica_cierra_la_anterior
+  /Users/apple/Documents/Uptaeb/Proyecto/Itinerario/app/model/bitacora_model.py:213: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    fin = datetime.utcnow()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+XFAIL test/backend/test_guion_rutas.py::test_crear_guion_con_nombre_base_invalido_no_deberia_escribir[ab] - Hallazgo GU-API-06: crear añade la fecha antes de validar, así que un nombre base vacío o de 1-2 caracteres se acepta en el servidor
+XFAIL test/backend/test_guion_rutas.py::test_crear_guion_con_nombre_base_invalido_no_deberia_escribir[] - Hallazgo GU-API-06: crear añade la fecha antes de validar, así que un nombre base vacío o de 1-2 caracteres se acepta en el servidor
+XFAIL test/backend/test_guion_rutas.py::test_crear_guion_con_nombre_base_invalido_no_deberia_escribir[   ] - Hallazgo GU-API-06: crear añade la fecha antes de validar, así que un nombre base vacío o de 1-2 caracteres se acepta en el servidor
+723 passed, 3 xfailed, 2 warnings in 34.96s

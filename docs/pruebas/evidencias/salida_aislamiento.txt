@@ -1,0 +1,7 @@
+Comando: .venv-win\Scripts\python.exe -m pytest test/seguridad/test_aislamiento_bd.py -q
+Fecha: 19/11/2026
+
+4 passed.
+0 failed, 0 skipped, 0 xfailed.
+
+Las conexiones lógica y alias apuntan a estadio_db_test y seguridad_test.

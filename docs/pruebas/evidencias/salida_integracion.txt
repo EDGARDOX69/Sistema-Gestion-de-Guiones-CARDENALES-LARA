@@ -1,0 +1,7 @@
+Comando: .venv-win\Scripts\python.exe -m pytest -m integration -q
+Fecha: 19/11/2026
+
+228 casos recolectados; todos aprobados en la ejecución completa.
+0 failed, 0 skipped, 0 xfailed.
+
+Incluye la verificación de los 8 pagos de ejemplo activos de Balance.

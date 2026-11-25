@@ -1,0 +1,95 @@
+RESUMEN DE EJECUCIÓN DE PRUEBAS
+Fecha: 19/11/2026
+Equipo: Windows 11 Pro 10.0.22631, Python 3.12.10, Flask 3.1.3,
+PyMySQL 2.2.8, pytest 9.2.0, Playwright 1.64.0, Locust 2.47.0,
+MariaDB 10.11.16 (XAMPP), reportlab 5.1.0.
+
+BASES DE DATOS
+- Solo existen estadio_db_test y seguridad_test.
+- No existen estadio_db ni seguridad en el equipo.
+- La suite clona los dumps al inicio de cada sesión.
+- El servidor E2E usa DB_NAME_ESTADIO=estadio_db_test y
+  DB_NAME_SEGURIDAD=seguridad_test.
+- Evidencia: salida_aislamiento.txt y junit_aislamiento.xml.
+
+RESULTADOS
+- Suite completa sin navegador:
+  943 passed, 0 skipped, 0 xfailed, 0 failed en 221.52 s.
+  Comando: .venv-win\Scripts\python.exe -m pytest -q
+  Evidencia: junit_suite.xml.
+- Solo unitarias:
+  565 passed, 378 deselected en 4.19 s.
+  Comando: .venv-win\Scripts\python.exe -m pytest -m unit -q
+  Evidencia: salida_unitarias.txt.
+- Suite por módulo:
+  213 passed en 93.62 s.
+  Comando: .venv-win\Scripts\python.exe -m pytest "Pruebas por modulo" -q
+  Evidencia: salida_por_modulo.txt, junit_por_modulo.xml.
+- Interfaz con Playwright:
+  33 passed, 213 deselected en 144.00 s.
+  Comando: E2E=1 pytest test/interfaz "Pruebas por modulo" -m ui -q
+  Evidencia: junit_interfaz.xml.
+- Aislamiento de bases:
+  4 passed.
+  Comando: pytest test/seguridad/test_aislamiento_bd.py -q
+  Evidencia: salida_aislamiento.txt, junit_aislamiento.xml.
+- Balance:
+  31 passed.
+  Comando: pytest "Pruebas por modulo/balance" -q
+  Evidencia: salida_balance.txt.
+- Integración:
+  228 passed.
+  Comando: pytest -m integration -q
+  Evidencia: salida_integracion.txt.
+- Backend / API:
+  63 passed.
+  Comando: pytest -m api -q
+  Evidencia: salida_api.txt.
+- Humo:
+  64 passed.
+  Comando: pytest -m smoke -q
+  Evidencia: salida_humo.txt.
+- Aceptación:
+  19 passed.
+  Comando: pytest -m acceptance -q
+  Evidencia: salida_aceptacion.txt.
+
+HALLAZGOS CORREGIDOS
+1. GU-API-06: crear guion valida el nombre base antes de concatenar la fecha.
+   Los tres casos de test/backend/test_guion_rutas.py pasan sin xfail.
+2. REP-SEC-01: todos los endpoints de /reportes exigen reportes.view. El
+   permiso se sembró para Superadmin y Administrador; GET sin permiso redirige
+   al dashboard y POST devuelve 403.
+3. BAL-DAT-01: los 8 pagos de ejemplo están activos (estado=0), suman
+   141.000,00 y el balance inicial los incluye.
+
+PRUEBA DE USABILIDAD INTERNA
+- 11/11 tareas OK.
+- Login con CAPTCHA: 8,28 s.
+- Dashboard: 0,78 s.
+- Crear guion: 2,12 s.
+- Previsualizar guion: 0,77 s.
+- Balance: 1,10 s.
+- Inventario: 0,90 s.
+- Tareas: 1,09 s.
+- Reportes: 0,86 s.
+- Notificaciones: 0,82 s.
+- Dashboard y balance en 390x844: sin desbordamiento horizontal.
+- Evidencia: docs/pruebas/evidencias/usabilidad_interna/.
+
+NO EJECUTADO
+- Prueba Beta con usuarios externos del estadio.
+- Los 19 escenarios Locust (18 por módulo y el transversal de rutas críticas)
+  están preparados, pero no se ejecutaron en esta sesión.
+
+EVIDENCIA HISTÓRICA DE RENDIMIENTO
+- docs/pruebas/evidencias/locust_30_usuarios.log y
+  locust_30_usuarios_stats.csv corresponden a una ejecución previa sobre guion:
+  30 usuarios, 60 s, 655 peticiones y 0 fallos. No es el escenario nuevo de
+  rutas críticas y no se usa para afirmar el rendimiento actual.
+
+INCIDENCIA DE EJECUCIÓN
+- No se deben ejecutar dos sesiones de pytest al mismo tiempo: cada una recrea
+  las bases de prueba y la segunda puede ver tablas a medio crear.
+
+

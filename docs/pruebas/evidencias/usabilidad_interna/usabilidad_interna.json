@@ -1,0 +1,87 @@
+{
+  "tipo": "Prueba de usabilidad interna (piloto automatizado)",
+  "fecha": "19/11/2026",
+  "usuario": "Operador interno de pruebas con rol Superadmin",
+  "entorno": "Windows 11, Chromium, 127.0.0.1:5002, bases *_test",
+  "resultados": [
+    {
+      "tarea": "Login con CAPTCHA",
+      "ruta": "/auth/login",
+      "segundos": 8.28,
+      "estado": "OK",
+      "observacion": "Autenticación completada y redirección al dashboard."
+    },
+    {
+      "tarea": "Dashboard",
+      "ruta": "/dashboard",
+      "segundos": 0.78,
+      "estado": "OK",
+      "observacion": "Página visible y sin error interno."
+    },
+    {
+      "tarea": "Crear guion",
+      "ruta": "/guiones/crear",
+      "segundos": 2.12,
+      "estado": "OK",
+      "observacion": "Formulario validado y confirmación con SweetAlert completada."
+    },
+    {
+      "tarea": "Previsualizar guion",
+      "ruta": "/guiones/previsualizar/6",
+      "segundos": 0.77,
+      "estado": "OK",
+      "observacion": "Vista previa visible con el nombre del guion."
+    },
+    {
+      "tarea": "Balance",
+      "ruta": "/balance/",
+      "segundos": 1.1,
+      "estado": "OK",
+      "observacion": "Página visible y sin error interno."
+    },
+    {
+      "tarea": "Inventario",
+      "ruta": "/inventario/",
+      "segundos": 0.9,
+      "estado": "OK",
+      "observacion": "Página visible y sin error interno."
+    },
+    {
+      "tarea": "Tareas",
+      "ruta": "/gestion-tarea/",
+      "segundos": 1.09,
+      "estado": "OK",
+      "observacion": "Página visible y sin error interno."
+    },
+    {
+      "tarea": "Reportes",
+      "ruta": "/reportes/",
+      "segundos": 0.86,
+      "estado": "OK",
+      "observacion": "Página visible y sin error interno."
+    },
+    {
+      "tarea": "Notificaciones",
+      "ruta": "/dashboard",
+      "segundos": 0.82,
+      "estado": "OK",
+      "observacion": "Campana visible y menú de notificaciones desplegable."
+    },
+    {
+      "tarea": "Dashboard móvil",
+      "ruta": "/dashboard",
+      "segundos": 0.0,
+      "estado": "OK",
+      "observacion": "Viewport 390x844; desbordamiento horizontal: no."
+    },
+    {
+      "tarea": "Balance móvil",
+      "ruta": "/balance/",
+      "segundos": 0.0,
+      "estado": "OK",
+      "observacion": "Viewport 390x844; desbordamiento horizontal: no."
+    }
+  ],
+  "tareas_ok": 11,
+  "tareas_total": 11
+}

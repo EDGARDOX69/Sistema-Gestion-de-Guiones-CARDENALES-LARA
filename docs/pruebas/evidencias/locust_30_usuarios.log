@@ -1,0 +1,29 @@
+[2026-11-11 00:19:49,078] MacBook-Air-M5-Keiver/INFO/locust.main: Starting Locust 2.47.0
+[2026-11-11 00:19:49,100] MacBook-Air-M5-Keiver/INFO/locust.main: Run time limit set to 60 seconds
+[2026-11-11 00:19:49,100] MacBook-Air-M5-Keiver/INFO/locust.runners: Ramping to 30 users at a rate of 5.00 per second
+[2026-11-11 00:19:54,124] MacBook-Air-M5-Keiver/INFO/locust.runners: All users spawned: {"GuionUser": 30} (30 total users)
+[2026-11-11 00:20:57,071] MacBook-Air-M5-Keiver/INFO/locust.main: --run-time limit reached, shutting down
+[2026-11-11 00:20:57,202] MacBook-Air-M5-Keiver/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /auth/login                                                                       30     0(0.00%) |      6       2      14      5 |    0.70        0.00
+POST     /auth/login                                                                       30     0(0.00%) |    489     434     546    490 |    0.70        0.00
+GET      /en-vivo/api/estado-actual/[id]                                                  143     0(0.00%) |     11       4      68      9 |    3.35        0.00
+GET      /guiones/                                                                        220     0(0.00%) |     23       7     369     13 |    5.16        0.00
+GET      /guiones/crear                                                                    81     0(0.00%) |     14       3     252      7 |    1.90        0.00
+GET      /guiones/previsualizar/[id]                                                      151     0(0.00%) |     17       6     333     11 |    3.54        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                       655     0(0.00%) |     38       2     546     11 |   15.35        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      /auth/login                                                                             5      7      7      8     13     13     14     14     14     14     14     30
+POST     /auth/login                                                                           490    510    510    530    530    540    550    550    550    550    550     30
+GET      /en-vivo/api/estado-actual/[id]                                                         9     10     10     11     17     43     56     68     69     69     69    143
+GET      /guiones/                                                                              13     14     15     16     22     64    250    300    370    370    370    220
+GET      /guiones/crear                                                                          7      8      9      9     13     59    110    250    250    250    250     81
+GET      /guiones/previsualizar/[id]                                                            11     12     13     14     20     56     80    100    330    330    330    151
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                             11     13     14     15     44    330    490    510    550    550    550    655
+
