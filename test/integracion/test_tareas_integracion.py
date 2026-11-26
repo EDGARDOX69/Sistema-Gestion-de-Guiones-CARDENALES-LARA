@@ -1,6 +1,6 @@
 """
 Pruebas de integración del módulo Gestión de Tareas.
-Requiere MySQL real con las bases estadio_db y seguridad.
+Requiere MySQL con las bases de prueba estadio_db_test y seguridad_test.
 
 Ejecutar desde la raíz del proyecto:
     pytest tests/test_tareas_integracion.py -v -s
@@ -9,22 +9,17 @@ Estas pruebas crean datos identificables y eliminan únicamente los registros
 creados por ellas. No utilizan TRUNCATE ni limpian tablas completas.
 """
 
-import os
 import uuid
 
 import pytest
-from flask import Flask
 
 from app.database import Database
 from app.model.tarea_model import TareaModel, TareasAsignadasModel
 
 
 @pytest.fixture
-def contexto_bd():
-    """Abre un contexto Flask para que Database pueda utilizar flask.g."""
-    app = Flask(__name__)
-    Database.init_app(app)
-
+def contexto_bd(app):
+    """Usa la app de pruebas, configurada para conectar solo con *_test."""
     with app.app_context():
         yield
 
@@ -41,8 +36,8 @@ def escenario(contexto_bd):
     asignaciones = TareasAsignadasModel()
     tarea_id = None
 
-    db = Database.get_connection("estadio_db")
-    db_seguridad = Database.get_connection("seguridad")
+    db = Database.get_connection("estadio_db_test")
+    db_seguridad = Database.get_connection("seguridad_test")
 
     # Seleccionar un usuario activo real, sin modificar sus datos.
     with db_seguridad.cursor() as cur:
@@ -52,7 +47,7 @@ def escenario(contexto_bd):
         usuario = cur.fetchone()
 
     if not usuario:
-        pytest.skip("No hay usuarios activos en la base de datos seguridad.")
+        pytest.skip("No hay usuarios activos en la base de datos seguridad_test.")
 
     usuario_id = usuario["id"]
 
@@ -66,7 +61,7 @@ def escenario(contexto_bd):
     if not tarea_id:
         pytest.fail(
             "No se pudo crear la tarea de prueba. "
-            "Revisa la estructura de estadio_db.tareas y el resultado de confirmar_registro()."
+            "Revisa la estructura de estadio_db_test.tareas y el resultado de confirmar_registro()."
         )
 
     datos = {
@@ -122,7 +117,7 @@ def test_registrar_y_consultar_tarea_en_mysql(contexto_bd):
         assert int(recuperada["Estatus"]) == 1
     finally:
         if tarea_id is not None:
-            db = Database.get_connection("estadio_db")
+            db = Database.get_connection("estadio_db_test")
             with db.cursor() as cur:
                 cur.execute(
                     "DELETE FROM tareas WHERE id_tarea = %s",
@@ -225,7 +220,7 @@ def test_modificar_estado_y_contar_pendientes(escenario):
 
 
 def test_asignar_a_usuarios_genera_notificacion(escenario):
-    """Comprueba la escritura coordinada en estadio_db y seguridad."""
+    """Comprueba la escritura coordinada en estadio_db_test y seguridad_test."""
     modelo = TareasAsignadasModel()
 
     asignados, omitidos = modelo.asignar_a_usuarios(
@@ -238,7 +233,7 @@ def test_asignar_a_usuarios_genera_notificacion(escenario):
     assert asignados == [escenario["usuario_id"]]
     assert omitidos == []
 
-    db_seguridad = Database.get_connection("seguridad")
+    db_seguridad = Database.get_connection("seguridad_test")
     with db_seguridad.cursor() as cur:
         cur.execute(
             """
@@ -278,7 +273,7 @@ def test_asignar_a_usuarios_evitar_duplicado(escenario):
     assert primera == ([escenario["usuario_id"]], [])
     assert segunda == ([], [escenario["usuario_id"]])
 
-    db = Database.get_connection("estadio_db")
+    db = Database.get_connection("estadio_db_test")
     with db.cursor() as cur:
         cur.execute(
             """
