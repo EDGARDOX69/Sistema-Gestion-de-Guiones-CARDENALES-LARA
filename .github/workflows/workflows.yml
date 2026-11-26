@@ -73,6 +73,7 @@ jobs:
         env:
           FLASK_ENV: testing
           TESTING: "1"
+          SECRET_KEY: "clave-de-prueba-ci-flask-123456"
           DB_HOST: 127.0.0.1
           DB_USER: root
           DB_PASSWORD: ""
@@ -86,5 +87,5 @@ jobs:
             fi
             sleep 1
           done
-          locust -f locustfile_gestion_tarea.py --headless -u 10 -r 2 --run-time 60s --host http://127.0.0.1:5001
-          locust -f locustfile_tareas_asignadas.py --headless -u 10 -r 2 --run-time 60s --host http://127.0.0.1:5001
+          locust -f test/rendimiento/locustfile_gestion_tarea.py --headless -u 10 -r 2 --run-time 60s --host http://127.0.0.1:5001 kill $SERVER_PID || true
+          locust -f test/rendimiento/locustfile_tareas_asignadas.py --headless -u 10 -r 2 --run-time 60s --host http://127.0.0.1:5001 kill $SERVER_PID || true
