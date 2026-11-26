@@ -1,32 +1,29 @@
 
-import os
-
 import pytest
-from flask import Flask
 
 from app.database import Database
 from app.model.tarea_model import TareaModel
 
 
 @pytest.fixture
-def contexto_bd():
+def contexto_bd(app):
     """
-    Prepara un contexto Flask para utilizar Database.get_connection()
-    con la configuración MySQL del proyecto.
+    Usa la app de pruebas, configurada para conectar solo con *_test.
     """
-    app = Flask(__name__)
-    Database.init_app(app)
-
     with app.app_context():
         yield
 
 
 def test_ciclo_completo_tarea(contexto_bd):
-    # Necesitamos un usuario existente en la tabla de usuarios.
-    usuario_id = os.getenv("TEST_USER_ID")
+    # El creador debe existir en la copia de prueba de seguridad.
+    with Database.get_connection("seguridad_test").cursor() as cur:
+        cur.execute("SELECT id FROM usuarios WHERE activo = 1 ORDER BY id LIMIT 1")
+        usuario = cur.fetchone()
 
-    if not usuario_id:
-        pytest.skip("Define TEST_USER_ID con el ID de un usuario existente")
+    if not usuario:
+        pytest.skip("No hay usuarios activos en la base de datos seguridad_test.")
+
+    usuario_id = usuario["id"]
 
     modelo = TareaModel()
 
