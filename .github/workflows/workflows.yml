@@ -56,3 +56,23 @@ jobs:
           DB_USER: root
           DB_PASSWORD: ""
         run: pytest test/humo test/backend test/aceptacion -v
+
+      - name: ejecutar pruebas de interfaz
+        env:
+          FLASK_ENV: testing
+          TESTING: "1"
+          DB_HOST: 127.0.0.1
+          DB_USER: root
+          DB_PASSWORD: ""
+        run: pytest test/interfaz/ -v
+
+      - name: Ejecutar pruebas de rendimiento (Locust)
+        env:
+          FLASK_ENV: testing
+          TESTING: "1"
+          DB_HOST: 127.0.0.1
+          DB_USER: root
+          DB_PASSWORD: ""
+        run: |
+          locust -f locustfile_gestion_tarea.py --headless -u 10 -r 2 --run-time 60s --host http://127.0.0.1:5001
+          locust -f locustfile_tareas_asignadas.py --headless -u 10 -r 2 --run-time 60s --host http://127.0.0.1:5001

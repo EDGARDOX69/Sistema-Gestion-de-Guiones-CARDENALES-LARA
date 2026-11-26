@@ -43,3 +43,5 @@ pytest-playwright==0.10.0
 pytest-html>=4.0
 
 playwright==1.64.0
+
+locust 
