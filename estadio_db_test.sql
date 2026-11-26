@@ -353,7 +353,7 @@ CREATE TABLE `premios` (
   `nombre` varchar(100) NOT NULL,
   `descripcion` text DEFAULT NULL,
   `estado` varchar(20) DEFAULT 'pendiente',
-  `fecha_creacion` date NOT NULL DEFAULT current_timestamp(),
+  `fecha_creacion` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `fecha_entrega` datetime DEFAULT NULL,
   `entregado_por` int(11) DEFAULT NULL,
   `hora_creacion` time NOT NULL,
