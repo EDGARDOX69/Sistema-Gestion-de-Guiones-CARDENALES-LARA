@@ -23,7 +23,8 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
-      steps:
+
+    steps:
       - name: Descargar codigo del repositorio
         uses: actions/checkout@v4
 
@@ -47,11 +48,11 @@ jobs:
           DB_PASSWORD: ""
         run: pytest test/unitarias test/integracion -v
 
-       - name: ejecutar pruebas unitarias e integracion
-         env: 
+      - name: Ejecutar pruebas de humo backend y aceptacion
+        env:
           FLASK_ENV: testing
           TESTING: "1"
           DB_HOST: 127.0.0.1
           DB_USER: root
           DB_PASSWORD: ""
-        run: pytest/aceptacion test/humo test/backend -v
+        run: pytest test/humo test/backend test/aceptacion -v
