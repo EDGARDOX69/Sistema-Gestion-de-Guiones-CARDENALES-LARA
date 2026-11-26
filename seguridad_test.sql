@@ -136,7 +136,7 @@ CREATE TABLE `notificaciones` (
   `mensaje` varchar(255) NOT NULL,
   `url` varchar(200) DEFAULT NULL,
   `leida` tinyint(1) DEFAULT 0,
-  `fecha_creacion` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `fecha_creacion` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -159,7 +159,7 @@ CREATE TABLE `password_reset_tokens` (
   `token` varchar(64) NOT NULL,
   `expires_at` datetime NOT NULL,
   `used` tinyint(1) DEFAULT 0,
-  `created_at` datetime DEFAULT current_timestamp()
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
