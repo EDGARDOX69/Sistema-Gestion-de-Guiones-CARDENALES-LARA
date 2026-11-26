@@ -1,5 +1,6 @@
-#  python -m locust -f test/rendimiento/test_balance_locustfile.py --headless -u 20 -r 5 --run-time 15s --host http://127.0.0.1:5001
+#   python -m locust -f test/rendimiento/test_balance_locustfile.py --headless -u 20 -r 5 --run-time 15s --host http://127.0.0.1:5001
 
+# python -m locust -f test/rendimiento/test_balance_locustfile.py --host=http://127.0.0.1:5001
 from locust import HttpUser, task, between
 import random
 
