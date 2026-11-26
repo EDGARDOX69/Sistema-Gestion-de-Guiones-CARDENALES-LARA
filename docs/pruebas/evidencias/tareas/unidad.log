@@ -1,0 +1,15 @@
+..........................................                               [100%]
+============================== warnings summary ===============================
+test/unitarias/test_tarea_model_unit.py::test_validar_datos_rechaza_nombre_vacio
+  C:\Users\Edgardito\AppData\Roaming\Python\Python315\site-packages\engineio\async_drivers\eventlet.py:1: EventletDeprecationWarning: 
+  Eventlet is deprecated. It is currently being maintained in bugfix mode, and
+  we strongly recommend against using it for new projects.
+  
+  If you are already using Eventlet, we recommend migrating to a different
+  framework.  For more detail see
+  https://eventlet.readthedocs.io/en/latest/asyncio/migration.html
+  
+    from eventlet.green.threading import Event
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+42 passed, 1 warning in 9.70s

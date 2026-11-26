@@ -1,0 +1,57 @@
+{
+  "fecha": "2026-11-26T02:18:02.237024+00:00",
+  "resultados": [
+    {
+      "etapa": "unidad",
+      "estado": "ok",
+      "comandos": [
+        "ok"
+      ]
+    },
+    {
+      "etapa": "integracion",
+      "estado": "ok",
+      "comandos": [
+        "ok"
+      ]
+    },
+    {
+      "etapa": "api",
+      "estado": "ok",
+      "comandos": [
+        "ok"
+      ]
+    },
+    {
+      "etapa": "humo",
+      "estado": "ok",
+      "comandos": [
+        "ok"
+      ]
+    },
+    {
+      "etapa": "aceptacion",
+      "estado": "ok",
+      "comandos": [
+        "ok"
+      ]
+    },
+    {
+      "etapa": "interfaz",
+      "estado": "ok",
+      "comandos": [
+        "ok"
+      ]
+    },
+    {
+      "etapa": "calidad",
+      "estado": "ok",
+      "comandos": [
+        "ok",
+        "informativa",
+        "informativa"
+      ]
+    }
+  ],
+  "final": "ok"
+}

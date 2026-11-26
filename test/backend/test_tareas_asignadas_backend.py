@@ -2,6 +2,7 @@ import pytest
 from flask import g
 
 from app.database import Database
+from app.model.auth_model import Usuario
 from app.model.notificacion_model import NotificacionModel
 from app.model.tarea_model import TareaModel, TareasAsignadasModel
 
@@ -87,9 +88,15 @@ def test_backend_permisos_asignar_supervisar_y_completar_ajena(
             id_tarea=tarea["id_tarea"], id_usuario=u_dueno.id
         )[0]
 
-        # Cambiar a u_sin_permiso sin 'gestion_tarea.create' ni 'gestion_tarea.supervisar'
+        # Cambiar a u_sin_permiso sin 'gestion_tarea.create' ni 'gestion_tarea.supervisar'.
+        # El user_loader crea una instancia NUEVA en cada request, así que parchear
+        # solo el objeto del fixture no surte efecto al ejecutar esta prueba aislada.
         _cambiar_actor(client, login, u_sin_permiso)
-        monkeypatch.setattr(u_sin_permiso, "tiene_permiso", lambda perm: False, raising=False)
+        monkeypatch.setattr(
+            Usuario,
+            "tiene_permiso",
+            lambda self, perm: perm not in ("gestion_tarea.create", "gestion_tarea.supervisar"),
+        )
 
         r_den_asig = client.post(
             "/gestion-tarea/",

@@ -39,7 +39,7 @@ def test_gestion_tarea_crear_y_editar_desde_la_interfaz(page, e2e_credenciales):
     id_tarea = fila.locator('td').first.inner_text()
     nombre_editado = f'{nombre} editada'
 
-    fila.get_by_role('button', name='Editar').click()
+    fila.locator('button[title="Editar"]').click()
     page.locator('#edit_Nombre_Tarea').fill(nombre_editado)
     page.locator('#edit_Instruccion').fill(
         'Instrucciones actualizadas desde Playwright'

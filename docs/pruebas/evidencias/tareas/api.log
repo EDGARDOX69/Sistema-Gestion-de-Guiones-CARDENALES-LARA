@@ -1,0 +1,20 @@
+........                                                                 [100%]
+============================== warnings summary ===============================
+test/backend/test_tareas_asignadas_backend.py::test_backend_acceso_sin_sesion_redirige
+  C:\Users\Edgardito\AppData\Roaming\Python\Python315\site-packages\engineio\async_drivers\eventlet.py:1: EventletDeprecationWarning: 
+  Eventlet is deprecated. It is currently being maintained in bugfix mode, and
+  we strongly recommend against using it for new projects.
+  
+  If you are already using Eventlet, we recommend migrating to a different
+  framework.  For more detail see
+  https://eventlet.readthedocs.io/en/latest/asyncio/migration.html
+  
+    from eventlet.green.threading import Event
+
+test/backend/test_tareas_asignadas_backend.py::test_backend_permisos_asignar_supervisar_y_completar_ajena
+test/backend/test_tareas_asignadas_backend.py::test_backend_contratos_consultar_asignaciones_y_redirect_formulario
+  C:\Users\Edgardito\Desktop\Itinerario\app\model\bitacora_model.py:213: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    fin = datetime.utcnow()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+8 passed, 3 warnings in 12.64s

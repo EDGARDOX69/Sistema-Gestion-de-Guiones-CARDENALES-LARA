@@ -1,0 +1,23 @@
+.......                                                                  [100%]
+============================== warnings summary ===============================
+test/interfaz/test_tareas_asignadas.py::test_interfaz_asignar_seguimiento_y_completar_tarea[chromium]
+  C:\Users\Edgardito\AppData\Roaming\Python\Python315\site-packages\engineio\async_drivers\eventlet.py:1: EventletDeprecationWarning: 
+  Eventlet is deprecated. It is currently being maintained in bugfix mode, and
+  we strongly recommend against using it for new projects.
+  
+  If you are already using Eventlet, we recommend migrating to a different
+  framework.  For more detail see
+  https://eventlet.readthedocs.io/en/latest/asyncio/migration.html
+  
+    from eventlet.green.threading import Event
+
+Pruebas por modulo/gestion_tarea/interface/test_gestion_tarea_interface.py::test_gestion_tarea_interfaz_carga[chromium]
+  C:\Users\Edgardito\AppData\Roaming\Python\Python315\site-packages\_pytest\fixtures.py:1392: PytestRemovedIn10Warning: Session-scoped fixtures defined as instance methods are deprecated.
+  Instance attributes set in the 'base_url' fixture will NOT be visible to test methods,
+  as each test gets a new instance while the fixture runs only once per class.
+  Use a @classmethod decorator below @pytest.fixture and set attributes on cls instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#class-scoped-fixture-as-instance-method
+    fixturefunc = resolve_fixture_function(fixturedef, request)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+7 passed, 2 warnings in 80.23s (0:01:20)
