@@ -23,7 +23,7 @@ def crear_tarea_base(app):
 
     def _crear(nombre=None, instruccion="Instrucción de integración", id_creador=None):
         nombre_final = nombre or f"Tarea Integración {uuid.uuid4().hex[:8]}"
-        with Database.get_connection("estadio_db").cursor() as cur:
+        with Database.get_connection("estadio_db_test").cursor() as cur:
             cur.execute(
                 """INSERT INTO tareas (Nombre_Tarea, Instruccion, id_usuario_creador, Estatus)
                    VALUES (%s, %s, %s, 1)""",
@@ -37,14 +37,14 @@ def crear_tarea_base(app):
 
     yield _crear
 
-    with Database.get_connection("estadio_db").cursor() as cur:
+    with Database.get_connection("estadio_db_test").cursor() as cur:
         for id_tarea in creados:
             cur.execute("DELETE FROM tareas_asignadas WHERE id_tarea = %s", (id_tarea,))
             cur.execute("DELETE FROM tareas WHERE id_tarea = %s", (id_tarea,))
 
 
 def _limpiar_notificaciones_usuario(usuario_id):
-    with Database.get_connection("seguridad").cursor() as cur:
+    with Database.get_connection("seguridad_test").cursor() as cur:
         cur.execute("DELETE FROM notificaciones WHERE usuario_id = %s", (usuario_id,))
 
 
@@ -83,7 +83,7 @@ def test_integracion_modelo_asignar_duplicados_y_completar(
         assert fila_u1["usuario_nombre"] == u1.nombre
 
         # 3. Verificar notificación persistida en seguridad_test
-        with Database.get_connection("seguridad").cursor() as cur:
+        with Database.get_connection("seguridad_test").cursor() as cur:
             cur.execute(
                 """SELECT * FROM notificaciones
                    WHERE usuario_id = %s AND tipo = 'tarea_asignada'
@@ -160,7 +160,7 @@ def test_integracion_rutas_asignar_consultar_y_completar(
         asignacion_bd = TareasAsignadasModel().obtener_por_id(registro["id_asignacion"])
         assert asignacion_bd["Estado"] == "Completada"
 
-        with Database.get_connection("seguridad").cursor() as cur:
+        with Database.get_connection("seguridad_test").cursor() as cur:
             cur.execute(
                 """SELECT * FROM notificaciones
                    WHERE usuario_id = %s AND tipo = 'tarea_completada'
