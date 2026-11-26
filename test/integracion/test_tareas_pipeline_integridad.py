@@ -53,7 +53,7 @@ def test_pl_tar_int_01_fallo_notificacion_revierte_asignacion(app, superadmin, c
 
     assert asignados is None and omitidos is None
     assert _total(
-        'estadio_db',
+        'estadio_db_test',
         'SELECT COUNT(*) total FROM tareas_asignadas WHERE id_tarea = %s',
         (id_tarea,),
     ) == 0
@@ -81,13 +81,13 @@ def test_pl_tar_int_02_inactivo_no_recibe_asignacion_ni_notificacion(
     assert respuesta.get_json() == {'success': True, 'asignados': 1, 'omitidos': 0}
 
     filas = _filas(
-        'estadio_db',
+        'estadio_db_test',
         'SELECT id_usuario FROM tareas_asignadas WHERE id_tarea = %s AND Estatus = 1',
         (id_tarea,),
     )
     assert [f['id_usuario'] for f in filas] == [activo.id]
     assert _total(
-        'seguridad',
+        'seguridad_test',
         'SELECT COUNT(*) total FROM notificaciones WHERE usuario_id = %s',
         (inactivo.id,),
     ) == 0
@@ -119,14 +119,14 @@ def test_pl_tar_int_03_dedupe_combinado_una_notificacion_por_usuario(
     assert cuerpo['omitidos'] == 0
 
     filas = _filas(
-        'estadio_db',
+        'estadio_db_test',
         'SELECT id_usuario FROM tareas_asignadas WHERE id_tarea = %s AND Estatus = 1',
         (id_tarea,),
     )
     assert sorted(f['id_usuario'] for f in filas) == sorted([u1.id, u2.id])
     for usuario in usuarios:
         assert _total(
-            'seguridad',
+            'seguridad_test',
             "SELECT COUNT(*) total FROM notificaciones "
             "WHERE usuario_id = %s AND tipo = 'tarea_asignada'",
             (usuario.id,),
