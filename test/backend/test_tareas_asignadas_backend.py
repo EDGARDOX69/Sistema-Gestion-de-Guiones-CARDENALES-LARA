@@ -19,7 +19,7 @@ def _limpiar_notificaciones(usuario_ids):
     if not usuario_ids:
         return
     placeholders = ",".join(["%s"] * len(usuario_ids))
-    with Database.get_connection("seguridad").cursor() as cur:
+    with Database.get_connection("seguridad_test").cursor() as cur:
         cur.execute(
             f"DELETE FROM notificaciones WHERE usuario_id IN ({placeholders})",
             tuple(usuario_ids),
@@ -32,7 +32,7 @@ def tarea_temporal(app):
     creadas = []
 
     def _crear(nombre="Tarea Backend Completa", instruccion="Instrucción de prueba", id_creador=None):
-        with Database.get_connection("estadio_db").cursor() as cur:
+        with Database.get_connection("estadio_db_test").cursor() as cur:
             cur.execute(
                 """INSERT INTO tareas (Nombre_Tarea, Instruccion, id_usuario_creador, Estatus)
                    VALUES (%s, %s, %s, 1)""",
@@ -46,7 +46,7 @@ def tarea_temporal(app):
 
     yield _crear
 
-    with Database.get_connection("estadio_db").cursor() as cur:
+    with Database.get_connection("estadio_db_test").cursor() as cur:
         for tid in creadas:
             cur.execute("DELETE FROM tareas_asignadas WHERE id_tarea = %s", (tid,))
             cur.execute("DELETE FROM tareas WHERE id_tarea = %s", (tid,))

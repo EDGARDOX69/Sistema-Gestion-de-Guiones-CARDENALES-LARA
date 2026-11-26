@@ -20,7 +20,7 @@ def tarea_humo(app):
 
     def _crear(id_creador=None):
         nombre = f"Humo Tarea {uuid.uuid4().hex[:6]}"
-        with Database.get_connection("estadio_db").cursor() as cur:
+        with Database.get_connection("estadio_db_test").cursor() as cur:
             cur.execute(
                 """INSERT INTO tareas (Nombre_Tarea, Instruccion, id_usuario_creador, Estatus)
                    VALUES (%s, %s, %s, 1)""",
@@ -34,7 +34,7 @@ def tarea_humo(app):
 
     yield _crear
 
-    with Database.get_connection("estadio_db").cursor() as cur:
+    with Database.get_connection("estadio_db_test").cursor() as cur:
         for tid in creadas:
             cur.execute("DELETE FROM tareas_asignadas WHERE id_tarea = %s", (tid,))
             cur.execute("DELETE FROM tareas WHERE id_tarea = %s", (tid,))
@@ -83,7 +83,7 @@ def test_humo_flujo_basico_tareas_asignadas(
         actualizada = TareasAsignadasModel().obtener_por_id(asig["id_asignacion"])
         assert actualizada["Estado"] == "Completada"
     finally:
-        with Database.get_connection("seguridad").cursor() as cur:
+        with Database.get_connection("seguridad_test").cursor() as cur:
             cur.execute(
                 "DELETE FROM notificaciones WHERE usuario_id IN (%s, %s)",
                 (creador.id, asignado.id),
