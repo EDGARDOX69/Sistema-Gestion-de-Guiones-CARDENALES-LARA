@@ -77,5 +77,5 @@ jobs:
           DB_USER: root
           DB_PASSWORD: ""
         run: |
-          locust -f locustfile_gestion_tarea.py --headless -u 10 -r 2 --run-time 60s --host http://127.0.0.1:5001
-          locust -f locustfile_tareas_asignadas.py --headless -u 10 -r 2 --run-time 60s --host http://127.0.0.1:5001
+          locust -f test/rendimiento/locustfile_gestion_tarea.py --headless -u 10 -r 2 --run-time 60s --host http://127.0.0.1:5001
+          locust -f test/rendimiento/locustfile_tareas_asignadas.py --headless -u 10 -r 2 --run-time 60s --host http://127.0.0.1:5001
