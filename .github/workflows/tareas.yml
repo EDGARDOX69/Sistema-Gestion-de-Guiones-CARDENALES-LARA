@@ -32,7 +32,7 @@ jobs:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_ROOT_PASSWORD: root
+          MYSQL_ROOT_PASSWORD: ""
         ports:
           - 3306:3306
         options: >-
@@ -49,8 +49,8 @@ jobs:
       CAPTCHA_ENABLED: "0"
       # Nombres reales que lee app/config.py.
       DB_HOST: 127.0.0.1
-      DB_USER: root
-      DB_PASSWORD: root
+      DB_USER: ""
+      DB_PASSWORD: "" 
       DB_NAME_ESTADIO: estadio_db_test
       DB_NAME_SEGURIDAD: seguridad_test
       PYTHONIOENCODING: utf-8
